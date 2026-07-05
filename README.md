@@ -2,7 +2,7 @@
 
 **Turn receipts, invoices and business documents into structured data through one API.**
 
-InvoiceLane is [Talocode](https://api.talocode.site) invoice/receipt extraction product. Send raw text from invoices, receipts, or business documents and receive structured JSON — merchant, total, line items, dates, currency, and more.
+InvoiceLane is a [Talocode](https://docs.talocode.site) invoice/receipt extraction product. Send raw text from invoices, receipts, or business documents and receive structured JSON — merchant, total, line items, dates, currency, and more.
 
 > **v0.1** — Text extraction via a deterministic engine. OCR/PDF parsing is not yet supported.
 
