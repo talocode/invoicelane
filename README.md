@@ -137,3 +137,9 @@ INVOICELANE_ALLOW_LOCAL_UNAUTH=true pnpm dev
 ## License
 
 MIT
+
+## Support
+
+Open-source Talocode products are built and maintained by Abdulmuiz Adeyemo.
+
+Sponsor the work: https://github.com/sponsors/Abdulmuiz44
