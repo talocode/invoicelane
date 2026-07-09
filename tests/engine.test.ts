@@ -137,7 +137,15 @@ Total                          $35.00`
 
   void describe('validateFields', () => {
     void it('all fields present returns valid', () => {
-      const result = validateFields({ documentType: 'invoice', fields: { total: 100, currency: 'USD' } })
+      const result = validateFields({
+        documentType: 'invoice',
+        fields: {
+          invoiceNumber: 'INV-1',
+          total: 100,
+          currency: 'USD',
+          date: '2026-07-04',
+        },
+      })
       assert.equal(result.valid, true)
       assert.equal(result.missingFields.length, 0)
     })
@@ -146,6 +154,36 @@ Total                          $35.00`
       const result = validateFields({ documentType: 'invoice', fields: {} })
       assert.equal(result.valid, false)
       assert.ok(result.missingFields.length > 0)
+      assert.ok(result.missingFields.includes('invoiceNumber'))
+      assert.ok(result.missingFields.includes('total'))
+    })
+
+    void it('flags totals mismatch', () => {
+      const result = validateFields({
+        documentType: 'invoice',
+        fields: {
+          invoiceNumber: 'X',
+          total: 999,
+          currency: 'USD',
+          date: '2026-01-01',
+          subtotal: 100,
+          tax: 10,
+        },
+      })
+      assert.equal(result.valid, false)
+      assert.equal(result.totalsConsistent, false)
+    })
+  })
+
+  void describe('schema contract', () => {
+    void it('includes missingFields and vendor on extract', () => {
+      const result = extractInvoiceFromText(
+        'Invoice No: INV-001\nMerchant: ABC\nDate: 2026-07-04\nTotal: $100',
+      )
+      assert.ok(Array.isArray(result.missingFields))
+      assert.equal(result.vendor, 'ABC')
+      assert.equal(result.engine, 'rules')
+      assert.equal(result.version, '0.2.0')
     })
   })
 

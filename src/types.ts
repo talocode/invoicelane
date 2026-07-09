@@ -38,6 +38,10 @@ export interface ExtractedDocument {
   paymentMethod?: string
   confidence: number
   warnings: string[]
+  missingFields: string[]
+  totalsConsistent?: boolean
+  engine: 'rules'
+  version: string
 }
 
 export interface ValidateInput {
@@ -50,6 +54,7 @@ export interface ValidateResult {
   missingFields: string[]
   warnings: string[]
   normalized: Record<string, unknown>
+  totalsConsistent?: boolean
 }
 
 export interface ExportCsvInput {
@@ -72,6 +77,7 @@ export interface HealthResponse {
   ok: boolean
   service: string
   version: string
+  endpoints?: string[]
 }
 
 export interface ErrorResponse {

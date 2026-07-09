@@ -53,6 +53,21 @@ void describe('server', () => {
     const d = res.data as Record<string, unknown>
     assert.equal(d.ok, true)
     assert.equal(d.service, 'invoicelane')
+    assert.equal(d.version, '0.2.0')
+  })
+
+  void it('GET /v1/invoicelane/pricing returns credits', async () => {
+    const res = await request('GET', '/v1/invoicelane/pricing')
+    assert.equal(res.status, 200)
+    const d = res.data as { credits: Record<string, number> }
+    assert.equal(d.credits['invoicelane.extract'], 20)
+  })
+
+  void it('GET /v1/invoicelane/capabilities returns schema', async () => {
+    const res = await request('GET', '/v1/invoicelane/capabilities')
+    assert.equal(res.status, 200)
+    const d = res.data as { schema: { invoice: string[] } }
+    assert.ok(d.schema.invoice.includes('total'))
   })
 
   void it('POST /v1/invoicelane/extract without auth returns 401', async () => {

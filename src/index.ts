@@ -1,5 +1,16 @@
 export { InvoiceLaneClient, createInvoiceLaneClient } from './client.js'
-export { extractInvoiceFromText, extractReceiptFromText, extractFromText, validateFields, toCsv } from './engine.js'
+export {
+  extractInvoiceFromText,
+  extractReceiptFromText,
+  extractFromText,
+  validateFields,
+  toCsv,
+  getPricing,
+  getCapabilities,
+  computeMissingFields,
+  REQUIRED_BY_TYPE,
+  ENGINE_VERSION,
+} from './engine.js'
 
 export type {
   ExtractionType,

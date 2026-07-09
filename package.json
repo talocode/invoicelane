@@ -1,7 +1,7 @@
 {
   "name": "@talocode/invoicelane",
-  "version": "0.1.0",
-  "description": "Turn receipts, invoices and business documents into structured data through one API",
+  "version": "0.2.0",
+  "description": "Turn receipts, invoices and business documents into structured data through one API — schema-first document intelligence",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
